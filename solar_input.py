@@ -41,10 +41,13 @@ def parse_star_parameters(line, star):
     a = s.find(' ') #индекс первого пробела
     s = s[a+1:]
     a = s.find(' ')
-    star.r = s[:a]
+    star.r = s[:a] #радиус планеты
     s = s[a+1:]
     a = s.find(' ')
-    star.color = s[:a]
+    star.color = s[:a] #
+    s = s[a+1:]
+    a = s.find(' ')
+    star.mass = s[:a]
     s = s[a+1:]
     a = s.find(' ')
     star.x = s[:a]
