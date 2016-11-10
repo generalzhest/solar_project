@@ -24,7 +24,6 @@ def read_space_objects_data_from_file(input_filename):
                 objects.append(star)
             elif object_type == "planet":
                 planet = parse_planet_parameters(line)
-
                 objects.append(planet)
 
             else:
@@ -40,25 +39,25 @@ def parse_star_parameters(line):
     a = s.find(' ') #индекс первого пробела
     s = s[a+1:]
     a = s.find(' ')
-    star.r = int(s[:a]) #радиус star
+    star.r = float(s[:a]) #радиус star
     s = s[a+1:]
     a = s.find(' ')
     star.color = s[:a] #
     s = s[a+1:]
     a = s.find(' ')
-    star.mass = int(s[:a])
+    star.m = float(s[:a])
     s = s[a+1:]
     a = s.find(' ')
-    star.x = int(s[:a])
+    star.x = float(s[:a])
     s = s[a+1:]
     a = s.find(' ')
-    star.y = int(s[:a])
+    star.y = float(s[:a])
     s = s[a+1:]
     a = s.find(' ')
-    star.vx = int(s[:a])
+    star.vx = float(s[:a])
     s = s[a+1:]
     a = s.find(' ')
-    star.vy = int(s[:a])
+    star.vy = float(s[:a])
     return star
 
     """Считывает данные о звезде из строки.
@@ -77,7 +76,7 @@ def parse_star_parameters(line):
 
     '''pass  # FIXME: not done yet'''
 
-def parse_planet_parameters(line, planet):
+def parse_planet_parameters(line):
     """Считывает данные о планете из строки.
     Предполагается такая строка:
     Входная строка должна иметь слеюущий формат:
@@ -97,25 +96,25 @@ def parse_planet_parameters(line, planet):
     a = s.find(' ') #индекс первого пробела
     s = s[a+1:]
     a = s.find(' ')
-    planet.r = int(s[:a]) #радиус планеты
+    planet.r = float(s[:a]) #радиус планеты
     s = s[a+1:]
     a = s.find(' ')
     planet.color = s[:a]
     s = s[a+1:]
     a = s.find(' ')
-    planet.mass = int(s[:a])
+    planet.m = float(s[:a]) #масса планеты
     s = s[a+1:]
     a = s.find(' ')
-    planet.x = int(s[:a])
+    planet.x = float(s[:a])
     s = s[a+1:]
     a = s.find(' ')
-    planet.y = int(s[:a])
+    planet.y = float(s[:a])
     s = s[a+1:]
     a = s.find(' ')
-    planet.vx = int(s[:a])
+    planet.vx = float(s[:a])
     s = s[a+1:]
     a = s.find(' ')
-    planet.vy = int(s[:a])
+    planet.vy = float(s[:a])
     #pass  # FIXME: not done yet...
     return planet
 
@@ -133,7 +132,7 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     """
     with open(output_filename, 'w') as out_file:
         for obj in space_objects:
-            print(out_file, "%d %s %d %d %d %d %d" % (obj.r, obj.color, obj.mass, obj.x, obj.y, obj.vx, obj.vy))
+            print(out_file, "%f %s %f %f %f %f %f" % (obj.r, obj.color, obj.m, obj.x, obj.y, obj.vx, obj.vy))
             # FIXME: should store real values
 
 # FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
