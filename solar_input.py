@@ -23,13 +23,40 @@ def read_space_objects_data_from_file(input_filename):
                 star = Star()
                 parse_star_parameters(line, star)
                 objects.append(star)
+            elif object_type == "planet":
+                planet = Planet()
+                parse_planet_parameters(line,planet)
+                objects.append(planet)
+
             else:
                 print("Unknown space object")
+
 
     return objects
 
 
 def parse_star_parameters(line, star):
+
+    s = line
+    a = s.find(' ') #индекс первого пробела
+    s = s[a+1:]
+    a = s.find(' ')
+    star.r = s[:a]
+    s = s[a+1:]
+    a = s.find(' ')
+    star.color = s[:a]
+    s = s[a+1:]
+    a = s.find(' ')
+    star.x = s[:a]
+    s = s[a+1:]
+    a = s.find(' ')
+    star.y = s[:a]
+    s = s[a+1:]
+    a = s.find(' ')
+    star.vx = s[:a]
+    s = s[a+1:]
+    a = s.find(' ')
+    star.vy = s[:a]
     """Считывает данные о звезде из строки.
     Входная строка должна иметь слеюущий формат:
     Star <радиус в пикселах> <цвет> <масса> <x> <y> <Vx> <Vy>
